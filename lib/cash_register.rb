@@ -12,16 +12,20 @@ def initialize(discount = nil)
       end
 
       @last_quantity_bought = quantity
-      @last_price = price 
+      @last_price = price # yes, we already have a reference to this as @price, but this is just setting a new variable explicitly for our use case
     end
 
     def void_last_transaction
+      ## now, down here, when we invoke this
 
       total_last_transaction = @last_quantity_bought * @last_price
       @total = @total - total_last_transaction
 
+      ## we can subtract the total of the last transaction.
+
       @last_quantity_bought.times do
         @items.pop
+        ## pop an item out
       end
     end
 
