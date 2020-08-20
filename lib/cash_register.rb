@@ -44,7 +44,7 @@ class CashRegister
         @items.pop
       end
   end
-  total_last_transaction
+  
 end 
 
   
