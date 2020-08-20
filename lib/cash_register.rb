@@ -33,8 +33,8 @@ class CashRegister
       for qty in 1..item_info[:quantity] 
         item_names << item_info[:name]
       end 
-  end 
-    item_names
+       @last_quantity_bought = quantity
+      @last_price = price
   end 
   
   def void_last_transaction
