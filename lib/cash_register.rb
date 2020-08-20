@@ -42,7 +42,7 @@ class CashRegister
     @total = @total - total_last_transaction
     @last_quantity_bought.times do
     @items.pop
-      end
+    end
   end
   
 end 
