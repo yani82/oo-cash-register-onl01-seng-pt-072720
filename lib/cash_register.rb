@@ -43,8 +43,7 @@ class CashRegister
   
   @last_quantity_bought.times do
         @items.pop
-        ## pop an item out
-      end
+  end
   
 end 
 
