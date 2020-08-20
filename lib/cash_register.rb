@@ -38,13 +38,10 @@ class CashRegister
   end 
   
   def void_last_transaction
-      ## now, down here, when we invoke this
       total_last_transaction = @last_quantity_bought * @last_price
       @total = @total - total_last_transaction
-      ## we can subtract the total of the last transaction.
       @last_quantity_bought.times do
         @items.pop
-        ## pop an item out
       end
   
 end 
