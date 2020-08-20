@@ -1,50 +1,47 @@
-class CashRegister
-  
-  attr_accessor :discount, :total, :price, :items, :last_transaction
-  
-  def initialize(discount = 0)
+def initialize(discount = nil)
     @total = 0
     @discount = discount
-    @cart = []
   end
-  
-  def add_item(item, price, quantity = 1)
-    item_info = {}
-    item_info[:name] = item
-    item_info[:price] = price
-    item_info[:quantity] = quantity
 
-    @cart << item_info
+  def add_item(title, price, quantity = 1)
+      @price = price
+      @total = @total + (price * quantity)
+      @items ||= []
+      quantity.times do
+        @items << title
+      end
 
-    @total += price * quantity
-  end
-  
-  def apply_discount
-    if @discount == 0
-      return "There is no discount to apply."
+      @last_quantity_bought = quantity
+      @last_price = price # yes, we already have a reference to this as @price, but this is just setting a new variable explicitly for our use case
     end
-    @total -= @total * @discount / 100
-    return "After the discount, the total comes to $#{@total}."
-  end 
-  
-  def items
-    item_names = []
-    @cart.each do | item_info |
-      for qty in 1..item_info[:quantity] 
-        item_names << item_info[:name]
-      end 
-       @last_quantity_bought = quantity
-      @last_price = price
-  end 
-  
-  def void_last_transaction
+
+    def void_last_transaction
+      ## now, down here, when we invoke this
+
       total_last_transaction = @last_quantity_bought * @last_price
       @total = @total - total_last_transaction
+
+      ## we can subtract the total of the last transaction.
+
       @last_quantity_bought.times do
         @items.pop
+        ## pop an item out
       end
+    end
+
+  def apply_discount
+    if discount
+      self.total = (self.total * ((100.0 - discount.to_f)/100)).to_i
+      return "After the discount, the total comes to $#{total}."
+    else
+      return "There is no discount to apply."
+    end
   end
-  
-end 
+
+  def items
+    @items
+  end
+
+end
 
   
