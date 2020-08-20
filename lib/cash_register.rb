@@ -37,23 +37,8 @@ class CashRegister
     item_names
   end 
   
-  def add_item(title, price, quantity = 1)
-      @price = price
-      @total = @total + (price * quantity)
-      @items ||= []
-      quantity.times do
-        @items << title
-      end
-  @last_quantity_bought = quantity
-  @last_price = price 
-  end 
-  
   def void_last_transaction
-    total_last_transaction = @last_quantity_bought * last_price
-    @total = @total - total_last_transaction
-    @last_quantity_bought.times do
-    @items.pop
-    end
+    @total -= @price
   end
   
 end 
