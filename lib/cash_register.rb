@@ -43,6 +43,7 @@ class CashRegister
       @last_quantity_bought.times do
         @items.pop
       end
+      total_last_transaction
   end
   
 end 
